@@ -87,7 +87,9 @@ const removeManyPeople = (done) => {
   const nameToRemove = { name: "Mary" };
   Person.deleteMany(nameToRemove, (err, data) => {
     if (err) return console.error(err)
-    done(null, data);
+    data.ok = true
+    data.n = data.deletedCount
+    done(null, data)
   })
 };
 
