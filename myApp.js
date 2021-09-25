@@ -12,17 +12,20 @@ let PersonSchema = new Schema({
 
 let Person = model('Person', PersonSchema)
 
-let personX = new Person({
-  name: 'Toth Albeiro',
-  age: 2,
-  favoriteFoods: [
-    'comida humeda',
-    'pollo',
-  ]
-})
-
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let personX = new Person({
+    name: 'Toth Albeiro',
+    age: 2,
+    favoriteFoods: [
+      'comida humeda',
+      'pollo',
+    ]
+  })
+
+  personX.save((err, data) => {
+    if (err) return console.error(err)
+    done(null, data);
+  })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
